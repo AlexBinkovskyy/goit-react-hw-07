@@ -2,7 +2,7 @@ import { FaUserTie } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
 import CSS from './Contact.module.css';
 import { useDispatch } from 'react-redux';
-import { removeContact } from '../../redux/contactSlice';
+import { removeContact } from '../../redux/operations';
 
 export function Contact({ name, number, id }) {
   const dispatch = useDispatch();

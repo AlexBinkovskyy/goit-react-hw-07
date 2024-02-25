@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import CSS from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactSlice';
 
 export function ContactForm() {
   const initialValues = {
