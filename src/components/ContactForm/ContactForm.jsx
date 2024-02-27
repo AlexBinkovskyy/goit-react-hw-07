@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import CSS from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/operations';
+import InputMask from 'react-input-mask';
 
 export function ContactForm() {
   const initialValues = {
@@ -20,13 +22,13 @@ export function ContactForm() {
       .min(3, 'Too Short!')
       .max(50, 'Too Long!')
       .required('Required name'),
-    number: Yup.number().integer().required('Required number'),
+    number: Yup.string().required('Required number'),
   });
 
   const handleSubmit = (values, actions) => {
     actions.resetForm();
     dispatch(
-      addContact({ id: nanoid(), name: values.name, number: values.number })
+      addContact({ id: nanoid(), name: values.name, phone: values.number })
     );
   };
 
@@ -42,12 +44,16 @@ export function ContactForm() {
         <Field className={CSS.input} type="text" name="name" id={nameID} />
         <ErrorMessage className={CSS.errorName} name="name" component="span" />
         <label htmlFor={numberID}>Number</label>
-        <Field
-          className={CSS.inputSecond}
-          type="text"
-          name="number"
-          id={numberID}
-        />
+        <Field type="text" name="number" id={numberID}>
+          {({ field }) => (
+            <InputMask
+              {...field}
+              mask="999-999-9999"
+              maskChar=""
+              className={CSS.inputSecond}
+            />
+          )}
+        </Field>
         <ErrorMessage
           className={CSS.errorNumber}
           name="number"

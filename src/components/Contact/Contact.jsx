@@ -4,7 +4,7 @@ import CSS from './Contact.module.css';
 import { useDispatch } from 'react-redux';
 import { removeContact } from '../../redux/operations';
 
-export function Contact({ name, number, id }) {
+export function Contact({ name, phone, id }) {
   const dispatch = useDispatch();
 
   const handleDelete = id => {
@@ -19,7 +19,7 @@ export function Contact({ name, number, id }) {
       </div>
       <div className={CSS.userPhone}>
         <FaPhoneAlt className={CSS.icon} size="22px" />
-        <p className={CSS.title}>{number}</p>
+        <p className={CSS.title}>{phone}</p>
       </div>
       <button
         type="button"
